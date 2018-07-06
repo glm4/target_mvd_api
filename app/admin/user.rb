@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  permit_params :email, :first_name, :last_name, :username, :password, :password_confirmation
+  permit_params :email, :first_name, :last_name, :username, :gender, :password, :password_confirmation
 
   form do |f|
     f.inputs 'Details' do
@@ -7,6 +7,9 @@ ActiveAdmin.register User do
       f.input :first_name
       f.input :last_name
       f.input :username
+      # Generating integer values for select options, validation dont like it
+      # f.input :gender, :as => :select, :collection => User.genders
+      f.input :gender
 
       if f.object.new_record?
         f.input :password
@@ -24,6 +27,7 @@ ActiveAdmin.register User do
     column :first_name
     column :last_name
     column :username
+    column :gender
     column :sign_in_count
     column :created_at
     column :updated_at
@@ -46,6 +50,7 @@ ActiveAdmin.register User do
       row :first_name
       row :last_name
       row :username
+      row :gender
       row :sign_in_count
       row :created_at
       row :updated_at
