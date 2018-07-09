@@ -3,7 +3,7 @@ ActiveAdmin.register Topic do
 
   form do |f|
     f.inputs 'Details' do
-      f.input :name
+      f.input :name, required: true
       f.input :icon, as: :file
     end
 
@@ -15,7 +15,7 @@ ActiveAdmin.register Topic do
     id_column
     column :name
     column :icon do |topic|
-      image_tag topic.icon if topic.icon.present?
+      image_tag topic.icon.url, class: 'thumbnail' if topic.icon.present?
     end
 
     actions

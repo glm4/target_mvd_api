@@ -10,5 +10,6 @@
 #
 
 class Topic < ApplicationRecord
-  # mount_uploader :icon, TopicIconUploader
+  mount_uploader :icon, TopicIconUploader
+  validates :name, presence: true
 end
