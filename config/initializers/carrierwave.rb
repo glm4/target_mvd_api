@@ -6,7 +6,6 @@ CarrierWave.configure do |config|
     break if ENV['AWS_ACCESS_KEY_ID'].blank? || ENV['AWS_SECRET_ACCESS_KEY'].blank? ||
              ENV['S3_BUCKET_NAME'].blank? || ENV['AWS_BUCKET_REGION'].blank?
     config.fog_provider = 'fog/aws'
-
     config.fog_credentials = {
       provider: 'AWS',
       aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
