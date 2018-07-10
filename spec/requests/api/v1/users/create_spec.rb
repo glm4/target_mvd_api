@@ -9,6 +9,7 @@ describe 'POST api/v1/users/', type: :request do
     let(:email)                 { 'test@test.com' }
     let(:password)              { '12345678' }
     let(:password_confirmation) { '12345678' }
+    let(:gender)                { 'male' }
     let(:first_name)            { 'Johnny' }
     let(:last_name)             { 'Perez' }
 
@@ -19,6 +20,7 @@ describe 'POST api/v1/users/', type: :request do
           email: email,
           password: password,
           password_confirmation: password_confirmation,
+          gender: gender,
           first_name: first_name,
           last_name: last_name
         }
@@ -45,6 +47,7 @@ describe 'POST api/v1/users/', type: :request do
       expect(json[:user][:username]).to eq(user.username)
       expect(json[:user][:uid]).to eq(user.uid)
       expect(json[:user][:provider]).to eq('email')
+      expect(json[:user][:gender]).to eq(user.gender)
       expect(json[:user][:first_name]).to eq(user.first_name)
       expect(json[:user][:last_name]).to eq(user.last_name)
     end
