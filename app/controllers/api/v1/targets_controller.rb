@@ -1,7 +1,6 @@
 module Api
   module V1
     class TargetsController < Api::V1::ApiController
-      # skip_before_action :verify_authenticity_token
 
       def index
         @targets = Target.all
