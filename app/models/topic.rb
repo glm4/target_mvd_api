@@ -11,6 +11,6 @@
 
 class Topic < ApplicationRecord
   mount_uploader :icon, TopicIconUploader
-  validates :name, presence: true
   has_many :targets
+  validates :name, presence: true
 end

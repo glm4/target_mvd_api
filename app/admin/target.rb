@@ -34,7 +34,6 @@ ActiveAdmin.register Target do
       row :id
       row :title
       row :lat
-      row :lat
       row :lng
       row :radius
       row :topic_id

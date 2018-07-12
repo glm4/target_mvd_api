@@ -18,6 +18,6 @@ FactoryBot.define do
     lat       { Faker::Address.latitude }
     lng       { Faker::Address.longitude }
     radius    { Faker::Number.decimal(3) }
-    association :topic, factory: :topic
+    topic
   end
 end

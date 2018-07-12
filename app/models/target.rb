@@ -13,6 +13,6 @@
 #
 
 class Target < ApplicationRecord
-  validates :topic, :title, :lat, :lng, :radius, presence: true
   belongs_to :topic
+  validates :topic, :title, :lat, :lng, :radius, presence: true
 end
