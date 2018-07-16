@@ -38,6 +38,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
 
+  has_many :targets
+
   enum genders: [:male, :female, :other]
   validates :uid, uniqueness: { scope: :provider }
   validates :gender, inclusion: { in: genders }
