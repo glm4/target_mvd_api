@@ -3,7 +3,7 @@ module Api
     class TargetsController < Api::V1::ApiController
 
       def index
-        @targets = current_user.targets.within(Target.max_radius, origin: index_params).all
+        @targets = current_user.targets.within(Target::MAX_RADIUS, origin: location_params)
       end
 
       def create
@@ -16,7 +16,7 @@ module Api
         params.require(:target).permit(:title, :lat, :lng, :radius, :topic_id)
       end
 
-      def index_params
+      def location_params
         params.require([:lat, :lng])
       end
     end
