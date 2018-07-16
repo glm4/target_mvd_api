@@ -2,12 +2,8 @@ require 'rails_helper'
 
 describe 'GET api/v1/targets/', type: :request do
   describe 'GET index' do
-    let(:user) { create(:user) }
-    let!(:target) do
-      target = create(:target)
-      user.targets << target
-      return target
-    end
+    let!(:target) { target = create(:target) }
+    let(:user) { create(:user, targets: [target]) }
 
     subject do
       get api_v1_targets_path, headers: auth_headers, as: :json
