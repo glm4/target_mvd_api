@@ -47,6 +47,12 @@ describe 'POST api/v1/targets/', type: :request do
         expect(json[:target][:topic]).to_not be_nil
         expect(json[:target][:topic][:id]).to eq(topic_id)
       end
+
+      it 'adds the target to the user targets' do
+        subject
+
+        expect(user.targets.ids).to include(json[:target][:id])
+      end
     end
 
     context 'when the topic does not exist' do

@@ -2,20 +2,25 @@ require 'rails_helper'
 
 describe 'GET api/v1/targets/', type: :request do
   describe 'GET index' do
-    let(:user) { create(:user) }
-    let!(:target) { create(:target) }
+    let!(:target) { target = create(:target) }
+    let(:user) { create(:user, targets: [target]) }
+
+    subject do
+      get api_v1_targets_path, headers: auth_headers, as: :json
+    end
 
     context 'when there are targets' do
       it 'returns a successful response' do
-        get api_v1_targets_path, headers: auth_headers, as: :json
-        
+        subject
+
         expect(response).to have_http_status(:success)
       end
 
-      it 'returns the list of targets' do
-        get api_v1_targets_path, headers: auth_headers, as: :json
+      it 'returns the list of targets of the user' do
+        subject
 
         expect(json[:targets]).to_not be_empty
+        expect(json[:targets].map { |t| t[:id] }).to eq(user.targets.ids)
         expect(json[:targets].last[:id]).to eq(target.id)
         expect(json[:targets].last[:title]).to eq(target.title)
       end
@@ -23,8 +28,8 @@ describe 'GET api/v1/targets/', type: :request do
 
     context 'when there is no targets' do
       it 'returns an empty array' do
-        Target.destroy_all
-        get api_v1_targets_path, headers: auth_headers, as: :json
+        user.targets.destroy_all
+        subject
 
         expect(json[:targets]).to be_empty
       end

@@ -3,11 +3,11 @@ module Api
     class TargetsController < Api::V1::ApiController
 
       def index
-        @targets = Target.all
+        @targets = current_user.targets
       end
 
       def create
-        @target = Target.create!(target_params)
+        @target = current_user.targets.create!(target_params)
       end
 
       private

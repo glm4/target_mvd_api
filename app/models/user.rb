@@ -39,6 +39,7 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
   enum genders: [:male, :female, :other]
+  has_many :targets
   validates :uid, uniqueness: { scope: :provider }
   validates :gender, inclusion: { in: genders }
 
