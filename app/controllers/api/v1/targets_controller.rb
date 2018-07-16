@@ -10,6 +10,10 @@ module Api
         @target = current_user.targets.create!(target_params)
       end
 
+      def destroy
+        current_user.targets.find(target_id).destroy
+      end
+
       private
 
       def target_params
@@ -18,6 +22,10 @@ module Api
 
       def location_params
         params.require([:lat, :lng])
+      end
+
+      def target_id
+        params[:id]
       end
     end
   end
