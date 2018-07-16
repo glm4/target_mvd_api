@@ -17,4 +17,11 @@ class Target < ApplicationRecord
   belongs_to :topic
   belongs_to :user
   validates :topic, :title, :lat, :lng, :radius, presence: true
+  acts_as_mappable lat_column_name: :lat,
+                   lng_column_name: :lng
+
+  @@max_radius = 2
+  def self.max_radius
+    @@max_radius
+  end
 end
