@@ -20,5 +20,18 @@ FactoryBot.define do
     lng       { Faker::Address.longitude }
     radius    { Faker::Number.decimal(3) }
     topic
+
+    transient do
+      origin { { lat: -34.9, lng: -56.2 } }
+    end
+
+    trait :within_range do
+      lat  { origin[:lat] }
+      lng  { origin[:lng] }
+    end
+    trait :out_of_range do
+      lat  { origin[:lat] * -1 }
+      lng  { origin[:lng] * -1 }
+    end
   end
 end
