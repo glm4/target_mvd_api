@@ -9,7 +9,9 @@ unless Rails.env.test?
                   AWS_ACCESS_KEY_ID
                   AWS_SECRET_ACCESS_KEY
                   S3_BUCKET_NAME
-                  AWS_BUCKET_REGION]
+                  AWS_BUCKET_REGION
+                  TARGET_RADIUS_VISIBILITY
+                  TARGET_PER_USER_LIMIT]
 end
 
 Figaro.require_keys(variables)
