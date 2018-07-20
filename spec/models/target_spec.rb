@@ -23,5 +23,10 @@ RSpec.describe Target, type: :model do
     it { should validate_presence_of(:lng) }
     it { should validate_presence_of(:radius) }
     it { should validate_presence_of(:topic) }
+    it 'validates the target limit per user' do
+      subject.user.targets = create_list(:target, Target::PER_USER_LIMIT)
+      subject.valid?
+      expect(subject.errors[:user]).to include(I18n.t('api.errors.max_target_limit_reached'))
+    end
   end
 end

@@ -55,17 +55,28 @@ describe 'POST api/v1/targets/', type: :request do
       end
     end
 
-    context 'when the topic does not exist' do
-      let(:topic_id) { 0 }
-
-      it 'does not create a target' do
+    shared_examples 'unchanged target list' do
+      it 'does NOT create a target' do
         expect { subject }.not_to change { Target.count }
       end
 
-      it 'does not return a successful response' do
+      it 'does NOT return a successful response' do
         subject
+
         expect(response).to have_http_status(:bad_request)
       end
+    end
+
+    context 'when the topic does not exist' do
+      let(:topic_id) { 0 }
+
+      include_examples 'unchanged target list'
+    end
+
+    context 'when the user has too many targets' do
+      let!(:user) { create(:user, targets: create_list(:target, Target::PER_USER_LIMIT)) }
+
+      include_examples 'unchanged target list'
     end
   end
 end

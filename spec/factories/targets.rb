@@ -20,6 +20,7 @@ FactoryBot.define do
     lng       { Faker::Address.longitude }
     radius    { Faker::Number.decimal(3) }
     topic
+    user
 
     transient do
       origin { { lat: -34.9, lng: -56.2 } }
