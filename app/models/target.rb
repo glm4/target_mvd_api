@@ -20,6 +20,14 @@ class Target < ApplicationRecord
   belongs_to :topic
   belongs_to :user
   validates :topic, :title, :lat, :lng, :radius, presence: true
+  validate :target_per_user_limit_reached, on: :create
+
   acts_as_mappable lat_column_name: :lat,
                    lng_column_name: :lng
+
+  def target_per_user_limit_reached
+    if user.targets.count >= Target::PER_USER_LIMIT
+      errors[:user] << I18n.t('api.errors.max_target_limit_reached')
+    end
+  end
 end

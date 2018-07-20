@@ -7,11 +7,7 @@ module Api
       end
 
       def create
-        if current_user.targets.count < Target::PER_USER_LIMIT
-          @target = current_user.targets.create!(target_params)
-        else
-          render json: { error: I18n.t('api.errors.max_target_limit_reached') }, status: :bad_request
-        end
+        @target = current_user.targets.create!(target_params)
       end
 
       private
