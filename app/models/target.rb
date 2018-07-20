@@ -19,6 +19,9 @@ class Target < ApplicationRecord
 
   belongs_to :topic
   belongs_to :user
+  has_many :matches, foreign_key: :original_target_id
+  has_many :reverse_matches, class_name: :Match, foreign_key: :matching_target_id
+
   validates :topic, :title, :lat, :lng, :radius, presence: true
   validate :target_per_user_limit_reached, on: :create
 
