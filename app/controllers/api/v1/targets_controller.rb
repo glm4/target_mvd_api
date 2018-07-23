@@ -36,7 +36,7 @@ module Api
       end
 
       def location_params
-        params.require([:lat, :lng])
+        params.require(%i[lat lng])
       end
     end
   end

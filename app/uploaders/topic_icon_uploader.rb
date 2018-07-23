@@ -4,7 +4,7 @@ class TopicIconUploader < CarrierWave::Uploader::Base
   process resize_to_fill: [75, 75]
 
   def content_type_whitelist
-    /image\//
+    %r{image\/}
   end
 
   def store_dir

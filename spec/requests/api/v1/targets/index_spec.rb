@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'GET api/v1/targets/', type: :request do
   describe 'GET index' do
-    let (:params) { { lat: -34.9, lng: -56.2 } }
+    let(:params) { { lat: -34.9, lng: -56.2 } }
     let!(:target) { create(:target, :within_range, origin: params) }
     let!(:far_away_target) { create(:target, :out_of_range, origin: params) }
     let(:user) { create(:user, targets: [target, far_away_target]) }

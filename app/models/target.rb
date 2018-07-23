@@ -26,8 +26,7 @@ class Target < ApplicationRecord
                    lng_column_name: :lng
 
   def target_per_user_limit_reached
-    if user.targets.count >= Target::PER_USER_LIMIT
-      errors[:user] << I18n.t('api.errors.max_target_limit_reached')
-    end
+    return true if user.targets.count < Target::PER_USER_LIMIT
+    errors[:user] << I18n.t('api.errors.max_target_limit_reached')
   end
 end
