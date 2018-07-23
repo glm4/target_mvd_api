@@ -17,4 +17,6 @@ class Match < ApplicationRecord
   belongs_to :matching_target, class_name: :Target
   has_one :user_a, class_name: :User, through: :original_target, source: :user
   has_one :user_b, class_name: :User, through: :matching_target, source: :user
+
+  validates :original_target, :matching_target, presence: true
 end
