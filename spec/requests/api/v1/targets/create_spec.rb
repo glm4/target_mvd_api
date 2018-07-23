@@ -53,6 +53,28 @@ describe 'POST api/v1/targets/', type: :request do
 
         expect(user.targets.ids).to include(json[:target][:id])
       end
+
+      context 'when there are matching targets' do
+        let!(:original_target) { create(:target, lat: lat, lng: lng, topic_id: topic_id) }
+
+        it 'creates a match' do
+          expect { subject }.to change(Match, :count).by(1)
+        end
+
+        it 'adds the match to the target' do
+          subject
+
+          target = Target.find(json[:target][:id])
+          expect(target.reverse_matches).to_not be_empty
+          expect(target.reverse_matches.last.original_target).to eq(original_target)
+        end
+      end
+
+      context 'when there are NO matching targets' do
+        it 'does NOT create a match' do
+          expect { subject }.to_not change(Match, :count)
+        end
+      end
     end
 
     shared_examples 'unchanged target list' do

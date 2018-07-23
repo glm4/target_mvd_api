@@ -13,7 +13,9 @@
 
 FactoryBot.define do
   factory :match do
-    last_message "MyString"
-    unread_messages 1
+    last_message { Faker::Hacker.say_something_smart }
+    unread_messages { Faker::Number.number(1) }
+    association :original_target, factory: :target
+    association :matching_target, factory: :target
   end
 end
