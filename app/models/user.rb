@@ -57,6 +57,11 @@ class User < ApplicationRecord
     end
   end
 
+  def matches
+    targets_ids = targets.ids
+    Match.where(original_target_id: targets_ids).or(Match.where(matching_target_id: targets_ids))
+  end
+
   private
 
   def uses_email?

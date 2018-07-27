@@ -13,6 +13,7 @@ Rails.application.routes.draw do
         get :status, to: 'api#status'
         resources :users, only: :show
         resources :topics, only: :index
+        resources :matches, only: :index
         resources :targets
         resource :user, only: :update do
           get :profile
