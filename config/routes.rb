@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :messages
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   mount_devise_token_auth_for 'User', at: '/api/v1/users', controllers: {

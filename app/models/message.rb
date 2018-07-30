@@ -18,8 +18,7 @@ class Message < ApplicationRecord
   validate :match_belongs_to_user, on: :create
 
   def match_belongs_to_user
-    if !user.matches.ids.include?(match_id)
-      errors[:user] << I18n.t('api.errors.match_access_forbidden')
-    end
+    return true if user.blank? || match.blank? || user.matches.include?(match)
+    errors[:user] << I18n.t('api.errors.match_access_forbidden')
   end
 end
