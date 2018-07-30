@@ -3,4 +3,4 @@ json.email      user.email
 json.name       user.full_name
 json.first_name user.first_name
 json.username   user.username
-json.gender   user.gender
+json.gender     user.gender

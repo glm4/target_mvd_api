@@ -28,7 +28,6 @@ describe 'POST api/v1/targets/', type: :request do
     end
 
     context 'when the topic exists' do
-
       it 'returns a successful response' do
         subject
         expect(response).to have_http_status(:success)
