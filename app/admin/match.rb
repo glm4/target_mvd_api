@@ -1,16 +1,16 @@
 ActiveAdmin.register Match do
-  permit_params :last_message, :unread_messages
+  permit_params :last_message
 
   index do
     selectable_column
     id_column
-    column 'Original Target' do |t|
-      link_to t.original_target_id, admin_target_path(t.original_target_id)
+    column 'Original Target' do |m|
+      link_to m.original_target_id, admin_target_path(m.original_target_id)
     end
-    column 'Matching Target' do |t|
-      link_to t.matching_target_id, admin_target_path(t.matching_target_id)
+    column 'Matching Target' do |m|
+      link_to m.matching_target_id, admin_target_path(m.matching_target_id)
     end
-    column :unread_messages
+    column :last_message
 
     actions
   end

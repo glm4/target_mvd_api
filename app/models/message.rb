@@ -11,6 +11,8 @@
 #
 
 class Message < ApplicationRecord
+  after_create :update_match_last_message
+
   belongs_to :user
   belongs_to :match
 
@@ -20,5 +22,12 @@ class Message < ApplicationRecord
   def match_belongs_to_user
     return if user.blank? || match.blank? || user.matches.include?(match)
     errors[:user] << I18n.t('api.errors.match_access_forbidden')
+  end
+
+  private
+
+  def update_match_last_message
+    match.last_message = content
+    match.save!
   end
 end
