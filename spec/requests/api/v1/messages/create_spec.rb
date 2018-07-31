@@ -54,7 +54,7 @@ describe 'POST api/v1/matches/:match_id/messages', type: :request do
       it 'does NOT return a successful response' do
         subject
 
-        expect(response).to have_http_status(:bad_request)
+        expect(response).to have_http_status(:not_found)
       end
     end
 

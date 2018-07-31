@@ -3,11 +3,11 @@ module Api
     class MessagesController < Api::V1::ApiController
 
       def index
-        @messages = current_user.matches.find(match_id).messages.includes(:user)
+        @messages = current_match.messages.includes(:user)
       end
 
       def create
-        @message = current_user.messages.create!(message_params.merge(match_id: match_id))
+        @message = current_user.messages.create!(message_params.merge(match: current_match))
       end
 
       private
@@ -16,8 +16,8 @@ module Api
         params.require(:message).permit(:content)
       end
 
-      def match_id
-        params[:match_id]
+      def current_match
+        current_user.matches.find(params[:match_id])
       end
     end
   end
