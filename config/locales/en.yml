@@ -27,3 +27,4 @@ en:
       missing_param: 'A required param is missing'
       invalid_content_type: 'Invalid content type header'
       max_target_limit_reached: 'Maximum number of targets reached'
+      match_access_forbidden: 'Match not available'
