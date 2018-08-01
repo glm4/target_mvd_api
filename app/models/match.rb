@@ -25,4 +25,12 @@ class Match < ApplicationRecord
     user_last_online = current_user_id == original_target.user_id ? user_a_last_online : user_b_last_online
     messages.where("created_at > ? AND user_id != ?", user_last_online, current_user_id).count
   end
+
+  def update_user_last_online(current_user_id)
+    if current_user_id == original_target.user_id
+      update!(user_a_last_online: Time.now)
+    elsif current_user_id == matching_target.user_id
+      update!(user_b_last_online: Time.now)
+    end
+  end
 end
