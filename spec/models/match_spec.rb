@@ -4,11 +4,12 @@
 #
 #  id                 :integer          not null, primary key
 #  last_message       :string
-#  unread_messages    :integer
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  original_target_id :integer          not null
 #  matching_target_id :integer          not null
+#  user_a_last_online :datetime         default(Tue, 31 Jul 2018 14:25:06 UTC +00:00), not null
+#  user_b_last_online :datetime         default(Tue, 31 Jul 2018 14:25:06 UTC +00:00), not null
 #
 
 require 'rails_helper'
