@@ -1,2 +1,2 @@
-class AvatarUploader < CarrierWave::Uploader::Base
+class AvatarUploader < ImageUploaderBase
 end

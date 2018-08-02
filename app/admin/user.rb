@@ -23,6 +23,9 @@ ActiveAdmin.register User do
   index do
     selectable_column
     id_column
+    column :avatar do |user|
+      image_tag user.avatar_url, class: 'thumbnail' if user.avatar.present?
+    end
     column :email
     column :first_name
     column :last_name
@@ -51,6 +54,9 @@ ActiveAdmin.register User do
       row :last_name
       row :username
       row :gender
+      row :avatar do |user|
+        image_tag user.avatar_url if user.avatar.present?
+      end
       row :sign_in_count
       row :created_at
       row :updated_at
